@@ -1,0 +1,27 @@
+def tokenize(sentence: str) -> list[str]:
+    b1 = sentence.split(" minus ")
+    b2 = "|minus|".join(b1)
+
+    v1 = b2.split("minus ")
+    v2 = "minus|".join(v1)
+
+    b3 = v2.split(" divided by ")
+    b4 = "|divided by|".join(b3)
+    b5 = b4.split("(")
+    b6 = "|(|".join(b5)
+    b7 = b6.split(")")
+    b8 = "|)|".join(b7)
+    b9 = b8.split(" times ")
+    b10 = "|times|".join(b9)
+    b11 = b10.split(" plus ")
+    b12 = "|plus|".join(b11)
+
+    tokens = b12.split("|")
+    while ' ' in tokens:
+        tokens.remove(' ')
+    while '' in tokens:
+        tokens.remove('')
+
+    return tokens
+
+tokenize ("one plus (forty-five minus five)")
